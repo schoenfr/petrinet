@@ -4,11 +4,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import net.odyne.petrinet.entities.User;
+import net.odyne.petrinet.entities.Customer;
 
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+public interface UserRepository extends PagingAndSortingRepository<Customer, Long> {
 
-	public User findByUsername(@Param("username") String username);
+	public Customer findByUsername(@Param("username") String username);
 	
 }

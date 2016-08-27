@@ -7,7 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import net.odyne.petrinet.entities.AuthToken;
+import net.odyne.petrinet.entities.Customer;
 
 public class LoginTest {
 
@@ -17,14 +17,14 @@ public class LoginTest {
 
 	@Test
 	public void test1() {
-		ResponseEntity<AuthToken> res = login("rene", "scorp");
+		ResponseEntity<Customer> res = login("rene", "scorp");
 		Assert.assertEquals(200, res.getStatusCodeValue());
-		Assert.assertEquals("schoenfelder2211@gmail.com", res.getBody().getUser().getEmail());
+		Assert.assertEquals("schoenfelder2211@gmail.com", res.getBody().getEmail());
 	}
 
-	private ResponseEntity<AuthToken> login(String username, String password) {
+	private ResponseEntity<Customer> login(String username, String password) {
 		String url = URL + "/login?username=" + username + "&password=" + password;
-		return rest.exchange(url, HttpMethod.GET, new HttpEntity<String>(""), AuthToken.class);
+		return rest.exchange(url, HttpMethod.GET, new HttpEntity<String>(""), Customer.class);
 	}
 
 	// HttpHeaders headers = new HttpHeaders();

@@ -20,7 +20,7 @@ public class Petrinet {
 
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
-	private User owner;
+	private Customer owner;
 	
 	@OneToMany(targetEntity=Place.class, mappedBy = "parent", cascade = CascadeType.ALL)
 	private Set<Place> places;
@@ -39,11 +39,11 @@ public class Petrinet {
 		this.places = places;
 	}
 
-	public User getOwner() {
+	public Customer getOwner() {
 		return owner;
 	}
 	
-	public void setOwner(User owner) {
+	public void setOwner(Customer owner) {
 		this.owner = owner;
 	}
 	

@@ -7,10 +7,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import net.odyne.petrinet.entities.User;
+import net.odyne.petrinet.entities.Customer;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class AuthAspect {
 
 	// @Around("execution(* net.odyne.repositories.PetrinetRepository.*(..))")
@@ -18,10 +18,12 @@ public class AuthAspect {
 	public Object checkAccess(ProceedingJoinPoint joinPoint) throws Throwable {
 		System.out.println("log before " + joinPoint.getSignature().getName());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth == null || auth.getPrincipal() == null || !(auth.getPrincipal() instanceof User))
+		System.out.println(auth.getPrincipal());
+		System.out.println(auth.getCredentials());
+		if (auth == null || auth.getPrincipal() == null || !(auth.getPrincipal() instanceof Customer))
 			throw new SecurityException("ne, mag ich nicht");
 		
-		User user = (User) auth.getPrincipal();
+		Customer user = (Customer) auth.getPrincipal();
         System.out.println(user.getEmail());
 		
         
